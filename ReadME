@@ -4,3 +4,18 @@ This repository contains the project planning and setup for our team activity.
 Feel free to explore, contribute, and collaborate!
 
 Happy coding!
+
+## About Our Group Project: SchedualMe
+
+We're building SchedualMe—a Simple Task/To-Do List Manager that highlights essential programming skills.  
+**Features:**  
+- Add, edit, and delete tasks  
+- Mark tasks as complete  
+- Organize tasks into categories  
+- Potential for extra features like due dates and custom views
+
+**Audience:**  
+SchedualMe is designed for anyone needing to track daily activities, from students to professionals.
+
+**Why This Project Works:**  
+Development can be staged, starting with basic CRUD operations and expanding to more advanced features. This approach makes it manageable for solo or team development and allows for continuous improvement.

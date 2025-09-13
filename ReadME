@@ -5,9 +5,9 @@ Feel free to explore, contribute, and collaborate!
 
 Happy coding!
 
-## About Our Group Project: SchedualMeualMe
+## About Our Group Project: SchedualMe
 
-We're building SchedualMeualMe—a Simple Task/To-Do List Manager that highlights essential programming skills.  
+We're building SchedualMe—a Simple Task/To-Do List Manager that highlights essential programming skills.  
 **Features:**  
 - Add, edit, and delete tasks  
 - Mark tasks as complete  
@@ -15,7 +15,7 @@ We're building SchedualMeualMe—a Simple Task/To-Do List Manager that highlight
 - Potential for extra features like due dates and custom views
 
 **Audience:**  
-SchedualMeualMe is designed for anyone needing to track daily activities, from students to professionals.
+SchedualMe is designed for anyone needing to track daily activities, from students to professionals.
 
 **Why This Project Works:**  
 Development can be staged, starting with basic CRUD operations and expanding to more advanced features. This approach makes it manageable for solo or team development and allows for continuous improvement.

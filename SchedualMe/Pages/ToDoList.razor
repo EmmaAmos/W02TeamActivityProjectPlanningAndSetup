@@ -1,21 +1,33 @@
 @page "/ToDoList"
 @using System.Globalization
-@using SchedualMe.Models // Assuming SchedualModel.cs is in Models folder
+@using SchdeualMe.Models
+@inject ApplicationDbContext DbContext
+@using Microsoft.EntityFrameworkCore
+@using System.Linq
 
 @code {
-    private List<SchedualModel> todoItems = new();
-    private SchedualModel newItem = new();
+    private List<TodoItem> todoItems = new();
+    private TodoItem newItem = new();
 
-    private void AddItem()
+    protected override async Task OnInitializedAsync()
     {
-        newItem.Id = todoItems.Count + 1;
-        todoItems.Add(newItem);
-        newItem = new SchedualModel();
+        todoItems = await DbContext.TodoItems.ToListAsync();
     }
 
-    private void DeleteItem(SchedualModel itemToDelete)
+    private async Task AddItem()
     {
-        todoItems.Remove(itemToDelete);
+        newItem.DueDate = newItem.DueDate.Date; // Ensure only the date part is saved
+        DbContext.TodoItems.Add(newItem);
+        await DbContext.SaveChangesAsync();
+        newItem = new TodoItem();
+        todoItems = await DbContext.TodoItems.ToListAsync(); // Refresh the list
+    }
+
+    private async Task DeleteItem(TodoItem itemToDelete)
+    {
+        DbContext.TodoItems.Remove(itemToDelete);
+        await DbContext.SaveChangesAsync();
+        todoItems = await DbContext.TodoItems.ToListAsync(); // Refresh the list
     }
 }
 

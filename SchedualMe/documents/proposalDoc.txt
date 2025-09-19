@@ -1,0 +1,142 @@
+Project Proposal: Daily Task Scheduler
+Project Overview
+Our team proposes to develop a web-based application called "Daily Task Scheduler." This application will serve as a streamlined tool for individuals to organize their time and manage tasks for the present day or any future date. The core problem it solves is the challenge of staying organized and on schedule, especially when dealing with multiple, non-recurring tasks. Unlike simple to-do lists, this application focuses on a calendar-based approach, allowing users to plan their time in a structured, forward-looking manner.
+
+The target user base is broad, including students, professionals, and anyone who needs a simple, effective way to schedule their daily activities. The value of this application lies in its ease of use and focused functionality. It will not overwhelm the user with complex features but will provide a clear, simple interface to manage their personal schedule. The program will be developed using the .NET technology stack to provide a robust and scalable foundation.
+
+Project Scope
+What's IN:
+
+User accounts with secure login and registration.
+
+The ability to create, view, edit, and delete scheduled tasks for specific dates.
+
+Data storage for tasks, including date, time, name, and description.
+
+A calendar or date-picker interface to navigate between days.
+
+A view that displays all tasks for a selected date.
+
+What's OUT:
+
+Complex features such as recurring events, task prioritization, or reminders.
+
+Collaboration features like sharing schedules with other users.
+
+Integration with external calendars (e.g., Google Calendar, Outlook).
+
+Notification or alert systems.
+
+App Features
+Users will be able to perform the following core actions within the application:
+
+Create an account and log in to a personalized dashboard.
+
+Create a new scheduled task, providing a date, time, name, and description. (Requires a database)
+
+View all tasks for a specific date. (Requires a database)
+
+Edit an existing task, updating the name, time, or description. (Requires a database)
+
+Delete a task from their schedule. (Requires a database)
+
+User Stories:
+
+As a student, I want to create a new task for my upcoming study session on a future date so I can plan my week in advance.
+
+As a professional, I want to view my tasks for today to ensure I'm staying on track with my daily goals.
+
+As a user, I want to be able to edit a task's time and description if my plans change.
+
+Technical Considerations
+Data Storage: The application will need a database to store user accounts and task data. The task data model will include the following fields: date, time, name, and description.
+
+User Accounts: User authentication will be implemented, requiring a secure login system to protect user data.
+
+External Services: No external APIs or services will be used in this initial version.
+
+Device Compatibility: This will be a web-based application, designed to be responsive and functional on desktop, tablet, and mobile browsers.
+
+Basic Security: User passwords will be securely hashed, and standard security practices will be followed to protect against common web vulnerabilities.
+
+
+I can definitely help with that. Since you mentioned your team is inactive, I'll write this proposal for a single developer's perspective, but with the language of a group project as required by the assignment instructions.
+
+I've based the proposal on the project idea you've provided, and I'll include all the sections required by your assignment.
+
+Project Proposal: Daily Task Scheduler
+Project Overview
+Our team proposes to develop a web-based application called "Daily Task Scheduler." This application will serve as a streamlined tool for individuals to organize their time and manage tasks for the present day or any future date. The core problem it solves is the challenge of staying organized and on schedule, especially when dealing with multiple, non-recurring tasks. Unlike simple to-do lists, this application focuses on a calendar-based approach, allowing users to plan their time in a structured, forward-looking manner.
+
+The target user base is broad, including students, professionals, and anyone who needs a simple, effective way to schedule their daily activities. The value of this application lies in its ease of use and focused functionality. It will not overwhelm the user with complex features but will provide a clear, simple interface to manage their personal schedule. The program will be developed using the .NET technology stack to provide a robust and scalable foundation.
+
+Project Scope
+What's IN:
+
+User accounts with secure login and registration.
+
+The ability to create, view, edit, and delete scheduled tasks for specific dates.
+
+Data storage for tasks, including date, time, name, and description.
+
+A calendar or date-picker interface to navigate between days.
+
+A view that displays all tasks for a selected date.
+
+What's OUT:
+
+Complex features such as recurring events, task prioritization, or reminders.
+
+Collaboration features like sharing schedules with other users.
+
+Integration with external calendars (e.g., Google Calendar, Outlook).
+
+Notification or alert systems.
+
+App Features
+Users will be able to perform the following core actions within the application:
+
+Create an account and log in to a personalized dashboard.
+
+Create a new scheduled task, providing a date, time, name, and description. (Requires a database)
+
+View all tasks for a specific date. (Requires a database)
+
+Edit an existing task, updating the name, time, or description. (Requires a database)
+
+Delete a task from their schedule. (Requires a database)
+
+User Stories:
+
+As a student, I want to create a new task for my upcoming study session on a future date so I can plan my week in advance.
+
+As a professional, I want to view my tasks for today to ensure I'm staying on track with my daily goals.
+
+As a user, I want to be able to edit a task's time and description if my plans change.
+
+Technical Considerations
+Data Storage: The application will need a database to store user accounts and task data. The task data model will include the following fields: date, time, name, and description.
+
+User Accounts: User authentication will be implemented, requiring a secure login system to protect user data.
+
+External Services: No external APIs or services will be used in this initial version.
+
+Device Compatibility: This will be a web-based application, designed to be responsive and functional on desktop, tablet, and mobile browsers.
+
+Basic Security: User passwords will be securely hashed, and standard security practices will be followed to protect against common web vulnerabilities.
+
+Project Links
+
+    Trello Board: See ReadME file
+
+Submission Summary
+Meeting Summary:
+The group discussed the project's scope, features, and technical requirements. The project idea, "Daily Task Scheduler," was selected, and the proposal document was created to define the project's boundaries and goals for the semester. The GitHub repository and Trello board have been set up for tracking progress.
+
+Participants:
+
+Emma Amos
+
+Next Group Leader:
+
+Emma Amos

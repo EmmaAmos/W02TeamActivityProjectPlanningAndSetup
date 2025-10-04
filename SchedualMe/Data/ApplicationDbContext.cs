@@ -8,5 +8,6 @@ public class ApplicationDbContext : DbContext
     {
     }
 
-    public DbSet<TodoItem> TodoItems { get; set; }
+    // 2. CHANGED THE TYPE AND PROPERTY NAME TO MATCH YOUR SERVICE LOGIC
+    public DbSet<SchdeualModel> Tasks { get; set; } 
 }

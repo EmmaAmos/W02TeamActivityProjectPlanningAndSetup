@@ -1,34 +1,58 @@
 @page "/ToDoList"
 @using System.Globalization
-@using SchdeualMe.Models
-@inject ApplicationDbContext DbContext
+@using SchedualMe.Models // Make sure this is correct
+@inject ITaskService TaskService // KEEP THIS
 @using Microsoft.EntityFrameworkCore
 @using System.Linq
 
 @code {
-    private List<TodoItem> todoItems = new();
-    private TodoItem newItem = new();
+    // 1. Declare one list and one model (using the correct SchdeualModel)
+    private List<SchdeualModel> Tasks = new List<SchdeualModel>();
+    private SchdeualModel NewTask = new SchdeualModel(); 
 
+    // 2. ONE OnInitializedAsync method
     protected override async Task OnInitializedAsync()
     {
-        todoItems = await DbContext.TodoItems.ToListAsync();
+        // Use the SERVICE to get all tasks
+        Tasks = await TaskService.GetAllTasksAsync();
     }
 
-    private async Task AddItem()
+    // 3. Add logic (using the Service)
+    private async Task AddTask()
     {
-        newItem.DueDate = newItem.DueDate.Date; // Ensure only the date part is saved
-        DbContext.TodoItems.Add(newItem);
-        await DbContext.SaveChangesAsync();
-        newItem = new TodoItem();
-        todoItems = await DbContext.TodoItems.ToListAsync(); // Refresh the list
+        if (!string.IsNullOrWhiteSpace(NewTask.Title))
+        {
+            // Use the SERVICE to add the task
+            await TaskService.AddTaskAsync(NewTask);
+
+            // Reload the list and reset the form
+            Tasks = await TaskService.GetAllTasksAsync();
+            NewTask = new SchdeualModel(); 
+        }
     }
 
-    private async Task DeleteItem(TodoItem itemToDelete)
+    // 4. Delete logic (using the Service)
+    // Pass the correct model type
+    private async Task DeleteTask(SchdeualModel itemToDelete)
     {
-        DbContext.TodoItems.Remove(itemToDelete);
-        await DbContext.SaveChangesAsync();
-        todoItems = await DbContext.TodoItems.ToListAsync(); // Refresh the list
+        // Use the SERVICE to delete the task
+        await TaskService.DeleteTaskAsync(itemToDelete.Id);
+        
+        // Reload the list
+        Tasks = await TaskService.GetAllTasksAsync(); 
     }
+    
+    // 5. Completion Toggle/Update logic (You'll need this!)
+    private async Task ToggleComplete(SchdeualModel task)
+    {
+        // Invert the status and use the SERVICE to update it
+        task.IsComplete = !task.IsComplete;
+        await TaskService.UpdateTaskAsync(task);
+    }
+    
+    // REMOVED all references to todoItems, newItem, DbContext, AddItem, DeleteItem, and the duplicate OnInitializedAsync
+
+    //end of @code block
 }
 
 <h2>To-Do List</h2>
@@ -66,3 +90,28 @@
     }
     </tbody>
 </table>
+
+<h1>My To-Do List</h1>
+
+@if (Tasks == null || Tasks.Count == 0)
+{
+    <p><em>No tasks found. Add one below!</em></p>
+}
+else
+{
+    <ul>
+        @foreach (var task in Tasks.OrderByDescending(t => !t.IsComplete))
+        {
+            <li>
+                <input type="checkbox" checked="@task.IsComplete" disabled="disabled" />
+                <span style="@(task.IsComplete ? "text-decoration: line-through;" : "")">
+                    @task.Title
+                </span>
+            </li>
+        }
+    </ul>
+}
+
+<h2>Add New Task</h2>
+<input @bind="NewTask.Title" placeholder="What needs to be done?" />
+<button @onclick="AddTask">Add</button>

@@ -1,28 +1,23 @@
 @page "/ToDoList"
-@using System.Globalization
-@using SchedualMe.Models // Make sure this is correct
-@inject ITaskService TaskService // KEEP THIS
-@using Microsoft.EntityFrameworkCore
+@using SchedualMe.Models 
+@inject ITaskService TaskService 
 @using System.Linq
 
 @code {
-    // 1. Declare one list and one model (using the correct SchdeualModel)
     private List<SchdeualModel> Tasks = new List<SchdeualModel>();
     private SchdeualModel NewTask = new SchdeualModel(); 
 
-    // 2. ONE OnInitializedAsync method
     protected override async Task OnInitializedAsync()
     {
-        // Use the SERVICE to get all tasks
         Tasks = await TaskService.GetAllTasksAsync();
     }
 
-    // 3. Add logic (using the Service)
     private async Task AddTask()
     {
         if (!string.IsNullOrWhiteSpace(NewTask.Title))
         {
-            // Use the SERVICE to add the task
+            // Ensure NewTask is set to not complete by default (it is in the model, but good practice)
+            NewTask.IsComplete = false;
             await TaskService.AddTaskAsync(NewTask);
 
             // Reload the list and reset the form
@@ -31,87 +26,59 @@
         }
     }
 
-    // 4. Delete logic (using the Service)
-    // Pass the correct model type
     private async Task DeleteTask(SchdeualModel itemToDelete)
     {
-        // Use the SERVICE to delete the task
         await TaskService.DeleteTaskAsync(itemToDelete.Id);
-        
-        // Reload the list
-        Tasks = await TaskService.GetAllTasksAsync(); 
+        // Remove item from the local list to avoid another full fetch
+        Tasks.Remove(itemToDelete); 
     }
     
-    // 5. Completion Toggle/Update logic (You'll need this!)
     private async Task ToggleComplete(SchdeualModel task)
     {
-        // Invert the status and use the SERVICE to update it
+        // Invert status, update DB, no need to refresh the whole list
         task.IsComplete = !task.IsComplete;
         await TaskService.UpdateTaskAsync(task);
     }
-    
-    // REMOVED all references to todoItems, newItem, DbContext, AddItem, DeleteItem, and the duplicate OnInitializedAsync
-
-    //end of @code block
 }
 
-<h2>To-Do List</h2>
+<h1>SchedualMe: My To-Do List</h1>
 
-<div class="mb-3">
-    <input placeholder="Title" @bind="newItem.Title" class="form-control" />
-    <input placeholder="Description" @bind="newItem.Description" class="form-control" />
-    <input type="date" @bind="newItem.DueDate" class="form-control" />
-    <button class="btn btn-primary mt-2" @onclick="AddItem">Add</button>
-</div>
+<h2>Add New Task</h2>
+<input @bind="NewTask.Title" placeholder="What needs to be done?" />
+<input @bind="NewTask.Description" placeholder="Optional description..." />
+<button @onclick="AddTask">Add Task</button>
 
-<table class="table">
+<table class="table mt-4">
     <thead>
         <tr>
+            <th>Complete</th>
             <th>Title</th>
             <th>Description</th>
-            <th>Due Date</th>
-            <th>Complete</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-     @foreach (var item in todoItems)
+     @foreach (var task in Tasks.OrderByDescending(t => !t.IsComplete))
     {
         <tr>
-            <td>@item.Title</td>
-            <td>@item.Description</td>
-            <td>@item.DueDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)</td>
             <td>
-                <input type="checkbox" @bind="item.IsComplete" />
+                <input type="checkbox" @bind="task.IsComplete" @onchange="() => ToggleComplete(task)" />
             </td>
             <td>
-                <button class="btn btn-danger btn-sm" @onclick="() => DeleteItem(item)">Delete</button>
+                <span style="@(task.IsComplete ? "text-decoration: line-through;" : "")">
+                    @task.Title
+                </span>
+            </td>
+            <td>@task.Description</td>
+            <td>
+                <button class="btn btn-danger btn-sm" @onclick="() => DeleteTask(task)">Delete</button>
             </td>
         </tr>
     }
     </tbody>
 </table>
 
-<h1>My To-Do List</h1>
-
-@if (Tasks == null || Tasks.Count == 0)
+@if (Tasks.Count == 0)
 {
-    <p><em>No tasks found. Add one below!</em></p>
+    <p class="mt-4"><em>No tasks found. Get started by adding a task above!</em></p>
 }
-else
-{
-    <ul>
-        @foreach (var task in Tasks.OrderByDescending(t => !t.IsComplete))
-        {
-            <li>
-                <input type="checkbox" checked="@task.IsComplete" disabled="disabled" />
-                <span style="@(task.IsComplete ? "text-decoration: line-through;" : "")">
-                    @task.Title
-                </span>
-            </li>
-        }
-    </ul>
-}
-
-<h2>Add New Task</h2>
-<input @bind="NewTask.Title" placeholder="What needs to be done?" />
-<button @onclick="AddTask">Add</button>

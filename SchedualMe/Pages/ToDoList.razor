@@ -4,6 +4,8 @@
 @using System.Linq
 
 @code {
+
+    private SchdeualModel? TaskToEdit;
     private List<SchdeualModel> Tasks = new List<SchdeualModel>();
     private SchdeualModel NewTask = new SchdeualModel(); 
 
@@ -39,6 +41,25 @@
         task.IsComplete = !task.IsComplete;
         await TaskService.UpdateTaskAsync(task);
     }
+    private void SetTaskToEdit(SchdeualModel task)
+{
+    // Sets the local variable to the task being edited
+    TaskToEdit = task; 
+}
+
+    private async Task SaveTaskEdit()
+    {
+        if (TaskToEdit != null && !string.IsNullOrWhiteSpace(TaskToEdit.Title))
+        {
+            // 1. Call the service's Update method
+            await TaskService.UpdateTaskAsync(TaskToEdit);
+            
+            // 2. Clear the edit state
+            TaskToEdit = null;
+            
+            // No need to fetch the list again since we updated the reference
+        }
+    }
 }
 
 <h1>SchedualMe: My To-Do List</h1>
@@ -57,25 +78,61 @@
             <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
-     @foreach (var task in Tasks.OrderByDescending(t => !t.IsComplete))
+<tbody>
+    @foreach (var task in Tasks.OrderByDescending(t => !t.IsComplete))
     {
+        // Check if the current task is the one we are editing
+        bool isEditing = task == TaskToEdit;
+
         <tr>
             <td>
-                <input type="checkbox" @bind="task.IsComplete" @onchange="() => ToggleComplete(task)" />
+                <input type="checkbox" @bind="task.IsComplete" 
+                       @onchange="() => ToggleComplete(task)" 
+                       disabled="@isEditing" />
             </td>
             <td>
-                <span style="@(task.IsComplete ? "text-decoration: line-through;" : "")">
-                    @task.Title
-                </span>
+                @if (isEditing)
+                {
+                    // EDIT MODE: Input field for Title
+                    <input @bind="task.Title" class="form-control" />
+                }
+                else
+                {
+                    // DISPLAY MODE: Static text
+                    <span style="@(task.IsComplete ? "text-decoration: line-through;" : "")">
+                        @task.Title
+                    </span>
+                }
             </td>
-            <td>@task.Description</td>
             <td>
-                <button class="btn btn-danger btn-sm" @onclick="() => DeleteTask(task)">Delete</button>
+                @if (isEditing)
+                {
+                    // EDIT MODE: Input field for Description
+                    <input @bind="task.Description" class="form-control" />
+                }
+                else
+                {
+                    // DISPLAY MODE: Static text
+                    @task.Description
+                }
+            </td>
+            <td>
+                @if (isEditing)
+                {
+                    // EDIT MODE: Save and Cancel buttons
+                    <button class="btn btn-success btn-sm me-2" @onclick="SaveTaskEdit">Save</button>
+                    <button class="btn btn-secondary btn-sm" @onclick="CancelEdit">Cancel</button>
+                }
+                else
+                {
+                    // DISPLAY MODE: Edit and Delete buttons
+                    <button class="btn btn-info btn-sm me-2" @onclick="() => SetTaskToEdit(task)">Edit</button>
+                    <button class="btn btn-danger btn-sm" @onclick="() => DeleteTask(task)">Delete</button>
+                }
             </td>
         </tr>
     }
-    </tbody>
+</tbody>
 </table>
 
 @if (Tasks.Count == 0)

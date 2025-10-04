@@ -3,21 +3,23 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-public class SchdeualModel
+namespace SchedualMe.Models // The namespace that other files reference
 {
-    // Primary Key
-    [Key]
-    public int Id { get; set; }
+    public class SchdeualModel
+    {
+        // Primary Key
+        [Key]
+        public int Id { get; set; }
 
-    [Required]
-    public string Title { get; set; } = string.Empty;
+        [Required]
+        public string Title { get; set; } = string.Empty;
 
-    public string Description { get; set; } = string.Empty; // Optional detail
+        public string Description { get; set; } = string.Empty; 
 
-    public bool IsComplete { get; set; } = false; // Tracks completion status
+        public bool IsComplete { get; set; } = false; 
 
-    // For the future 'Category' feature:
-    public string Category { get; set; } = "General"; 
+        public string Category { get; set; } = "General"; 
 
-    public DateTime DateCreated { get; set; } = DateTime.Now;
+        public DateTime DateCreated { get; set; } = DateTime.Now;
+    }
 }

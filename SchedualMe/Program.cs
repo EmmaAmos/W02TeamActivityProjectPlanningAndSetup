@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity; 
-// You may need to add the TaskService using here if it's in another namespace
-// using SchedualMe.Services; 
-// using SchedualMe.Data; 
+using Microsoft.AspNetCore.Identity;
+using SchedualMe.Services; 
+using SchedualMe.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

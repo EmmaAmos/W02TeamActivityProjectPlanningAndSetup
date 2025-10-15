@@ -5,9 +5,9 @@
 
 @code {
 
-    private SchdeualModel? TaskToEdit;
-    private List<SchdeualModel> Tasks = new List<SchdeualModel>();
-    private SchdeualModel NewTask = new SchdeualModel(); 
+    private SchedualModel? TaskToEdit;
+    private List<SchedualModel> Tasks = new List<SchedualModel>();
+    private SchedualModel NewTask = new SchedualModel(); 
 
     protected override async Task OnInitializedAsync()
     {
@@ -24,24 +24,24 @@
 
             // Reload the list and reset the form
             Tasks = await TaskService.GetAllTasksAsync();
-            NewTask = new SchdeualModel(); 
+            NewTask = new SchedualModel(); 
         }
     }
 
-    private async Task DeleteTask(SchdeualModel itemToDelete)
+    private async Task DeleteTask(SchedualModel itemToDelete)
     {
         await TaskService.DeleteTaskAsync(itemToDelete.Id);
         // Remove item from the local list to avoid another full fetch
         Tasks.Remove(itemToDelete); 
     }
     
-    private async Task ToggleComplete(SchdeualModel task)
+    private async Task ToggleComplete(SchedualModel task)
     {
         // Invert status, update DB, no need to refresh the whole list
         task.IsComplete = !task.IsComplete;
         await TaskService.UpdateTaskAsync(task);
     }
-    private void SetTaskToEdit(SchdeualModel task)
+    private void SetTaskToEdit(SchedualModel task)
 {
     // Sets the local variable to the task being edited
     TaskToEdit = task; 

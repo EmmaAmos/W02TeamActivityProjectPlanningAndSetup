@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SchdeualMe.Models;
+using SchedualMe.Models;
 
 public class ApplicationDbContext : DbContext
 {
@@ -9,5 +9,5 @@ public class ApplicationDbContext : DbContext
     }
 
     // 2. CHANGED THE TYPE AND PROPERTY NAME TO MATCH YOUR SERVICE LOGIC
-    public DbSet<SchdeualModel> Tasks { get; set; } 
+    public DbSet<SchedualModel> Tasks { get; set; } 
 }

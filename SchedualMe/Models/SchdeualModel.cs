@@ -1,11 +1,11 @@
-// Models/SchdeualModel.cs
+// Models/SchedualModel.cs
 
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SchedualMe.Models // The namespace that other files reference
 {
-    public class SchdeualModel
+    public class SchedualModel
     {
         // Primary Key
         [Key]

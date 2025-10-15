@@ -1,6 +1,10 @@
 // Services/TaskService.cs
 
 using Microsoft.EntityFrameworkCore;
+using SchedualMe.Models; // The 'using' directive for your model
+
+// 1. File-Scoped Namespace (Note the semicolon; no curly braces needed for the namespace)
+namespace SchedualMe.Services;
 
 public class TaskService : ITaskService
 {
@@ -13,29 +17,29 @@ public class TaskService : ITaskService
     }
 
     // --- READ ---
-    public async Task<List<SchdeualModel>> GetAllTasksAsync()
+    public async Task<List<SchedualModel>> GetAllTasksAsync()
     {
-        return await _context.Tasks.ToListAsync(); // Corrected to ToListAsync()
+        return await _context.Tasks.ToListAsync();
     }
-    public async Task<SchdeualModel?> GetTaskByIdAsync(int id)
+    public async Task<SchedualModel?> GetTaskByIdAsync(int id)
     {
         return await _context.Tasks.FindAsync(id);
     }
 
     // --- CREATE ---
-    public async Task AddTaskAsync(SchdeualModel task)
+    public async Task AddTaskAsync(SchedualModel task)
     {
         _context.Tasks.Add(task);
         await _context.SaveChangesAsync();
     }
 
     // --- UPDATE ---
-    public async Task UpdateTaskAsync(SchdeualModel updatedTask)
+    public async Task UpdateTaskAsync(SchedualModel updatedTask)
     {
         _context.Tasks.Update(updatedTask);
         await _context.SaveChangesAsync();
     }
-    
+
     public async Task MarkAsCompleteAsync(int id, bool isComplete)
     {
         var task = await GetTaskByIdAsync(id);

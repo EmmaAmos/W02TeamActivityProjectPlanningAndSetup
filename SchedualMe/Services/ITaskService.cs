@@ -1,17 +1,19 @@
 // Services/ITaskService.cs
 
+using SchedualMe.Models;
+
 public interface ITaskService
 {
     // READ
-    Task<List<SchdeualModel>> GetAllTasksAsync();
-    Task<SchdeualModel?> GetTaskByIdAsync(int id);
+    Task<List<SchedualModel>> GetAllTasksAsync();
+    Task<SchedualModel?> GetTaskByIdAsync(int id);
 
     // CREATE
-    Task AddTaskAsync(SchdeualModel task);
+    Task AddTaskAsync(SchedualModel task);
 
     // UPDATE
-    Task UpdateTaskAsync(SchdeualModel task);
-    
+    Task UpdateTaskAsync(SchedualModel task);
+
     // UPDATE (specific case)
     Task MarkAsCompleteAsync(int id, bool isComplete);
 

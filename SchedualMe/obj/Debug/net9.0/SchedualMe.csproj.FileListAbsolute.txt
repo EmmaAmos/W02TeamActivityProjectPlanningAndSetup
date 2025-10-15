@@ -1,0 +1,11 @@
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\SchedualMe.csproj.AssemblyReference.cache
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\SchedualMe.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\SchedualMe.AssemblyInfoInputs.cache
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\SchedualMe.AssemblyInfo.cs
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\SchedualMe.csproj.CoreCompileInputs.cache
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\SchedualMe.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\SchedualMe.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\SchedualMe.RazorAssemblyInfo.cache
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\SchedualMe.RazorAssemblyInfo.cs
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\SchedualMe.sourcelink.json

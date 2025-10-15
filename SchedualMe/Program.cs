@@ -20,10 +20,14 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // 4. Add Task Service (Only registered once)
-builder.Services.AddScoped<ITaskService, TaskService>(); 
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 // 5. Add Razor Pages support (Only registered once)
-builder.Services.AddRazorPages(); 
+builder.Services.AddRazorPages();
+
+builder.Services.AddSignalR();
+
+builder.Services.AddServerSideBlazor();
 
 // --- 2. APPLICATION PIPELINE (app.Use...) ---
 

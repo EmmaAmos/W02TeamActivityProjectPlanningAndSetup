@@ -4,19 +4,21 @@ using SchedualMe.Models;
 
 public interface ITaskService
 {
-    // READ
-    Task<List<SchedualModel>> GetAllTasksAsync();
-    Task<SchedualModel?> GetTaskByIdAsync(int id);
+ // READ: Must filter by user ID
+    Task<List<SchedualModel>> GetAllTasksAsync(string userId);
 
-    // CREATE
-    Task AddTaskAsync(SchedualModel task);
+    // READ: Must verify ownership by user ID
+    Task<SchedualModel?> GetTaskByIdAsync(string userId, int id);
 
-    // UPDATE
-    Task UpdateTaskAsync(SchedualModel task);
+    // CREATE: Must assign the user ID to the new task
+    Task AddTaskAsync(string userId, SchedualModel task);
 
-    // UPDATE (specific case)
-    Task MarkAsCompleteAsync(int id, bool isComplete);
+    // UPDATE: Must verify ownership by user ID before updating
+    Task UpdateTaskAsync(string userId, SchedualModel updatedTask);
 
-    // DELETE
-    Task DeleteTaskAsync(int id);
+    // UPDATE (specific case): Must verify ownership by user ID before updating
+    Task MarkAsCompleteAsync(string userId, int id, bool isComplete);
+
+    // DELETE: Must verify ownership by user ID before deleting
+    Task DeleteTaskAsync(string userId, int id);
 }

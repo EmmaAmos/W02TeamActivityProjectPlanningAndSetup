@@ -326,3 +326,7 @@ C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\Schedua
 C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\SchedualMe.pdb
 C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\SchedualMe.genruntimeconfig.cache
 C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\obj\Debug\net9.0\ref\SchedualMe.dll
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\bin\Debug\net9.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\bin\Debug\net9.0\Microsoft.AspNetCore.Components.dll
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\bin\Debug\net9.0\Microsoft.AspNetCore.Components.Authorization.dll
+C:\Users\elove\Desktop\Collage\C#\W02TeamActivityProjectPlanningAndSetup\SchedualMe\bin\Debug\net9.0\Microsoft.AspNetCore.Metadata.dll

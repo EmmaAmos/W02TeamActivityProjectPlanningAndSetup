@@ -1,141 +1,110 @@
 @page "/ToDoList"
 @using SchedualMe.Models 
-@inject ITaskService TaskService 
 @using System.Linq
+@using System.Security.Claims
+
+@using Microsoft.AspNetCore.Authorization @* <-- Needed for [Authorize] *@
+@using Microsoft.AspNetCore.Components.Authorization @* <-- Needed for AuthenticationStateProvider *@
+
+@inject ITaskService TaskService 
+
+@attribute [Authorize] 
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 @code {
 
     private SchedualModel? TaskToEdit;
     private List<SchedualModel> Tasks = new List<SchedualModel>();
-    private SchedualModel NewTask = new SchedualModel(); 
+    private SchedualModel NewTask = new SchedualModel();
+    private string CurrentUserId = string.Empty; // Holds the ID of the logged-in user
+
+    // Add a CancelEdit method for good UI practice
+    private void CancelEdit()
+    {
+        TaskToEdit = null;
+    }
 
     protected override async Task OnInitializedAsync()
     {
-        Tasks = await TaskService.GetAllTasksAsync();
+        // 2. Retrieve the Authentication State
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        // 3. Get the User ID
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            // The ClaimTypes.NameIdentifier holds the unique Identity ID (the GUID string)
+            CurrentUserId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
+
+            // Load tasks ONLY if we have a valid user ID
+            if (!string.IsNullOrEmpty(CurrentUserId))
+            {
+                await LoadTasks();
+            }
+        }
+    }
+
+    // Helper method to consolidate task fetching logic
+    private async Task LoadTasks()
+    {
+        // 4. Update the service call to pass the userId
+        Tasks = await TaskService.GetAllTasksAsync(CurrentUserId);
     }
 
     private async Task AddTask()
     {
-        if (!string.IsNullOrWhiteSpace(NewTask.Title))
+        if (!string.IsNullOrWhiteSpace(NewTask.Title) && !string.IsNullOrEmpty(CurrentUserId))
         {
-            // Ensure NewTask is set to not complete by default (it is in the model, but good practice)
             NewTask.IsComplete = false;
-            await TaskService.AddTaskAsync(NewTask);
+            
+            // 5. Update the service call to pass the userId
+            await TaskService.AddTaskAsync(CurrentUserId, NewTask);
 
             // Reload the list and reset the form
-            Tasks = await TaskService.GetAllTasksAsync();
+            await LoadTasks(); 
             NewTask = new SchedualModel(); 
         }
     }
 
     private async Task DeleteTask(SchedualModel itemToDelete)
     {
-        await TaskService.DeleteTaskAsync(itemToDelete.Id);
-        // Remove item from the local list to avoid another full fetch
+        // 6. Update the service call to pass the userId
+        await TaskService.DeleteTaskAsync(CurrentUserId, itemToDelete.Id);
+        
+        // Remove item from the local list
         Tasks.Remove(itemToDelete); 
     }
     
     private async Task ToggleComplete(SchedualModel task)
     {
-        // Invert status, update DB, no need to refresh the whole list
-        task.IsComplete = !task.IsComplete;
-        await TaskService.UpdateTaskAsync(task);
+        if (!string.IsNullOrEmpty(CurrentUserId))
+        {
+            // We can directly call UpdateTaskAsync (or MarkAsCompleteAsync if we use that)
+            task.IsComplete = !task.IsComplete;
+            
+            // 7. Update the service call to pass the userId
+            await TaskService.UpdateTaskAsync(CurrentUserId, task);
+        }
     }
+    
     private void SetTaskToEdit(SchedualModel task)
-{
-    // Sets the local variable to the task being edited
-    TaskToEdit = task; 
-}
+    {
+        TaskToEdit = task; 
+    }
 
     private async Task SaveTaskEdit()
     {
-        if (TaskToEdit != null && !string.IsNullOrWhiteSpace(TaskToEdit.Title))
+        if (TaskToEdit != null && !string.IsNullOrWhiteSpace(TaskToEdit.Title) && !string.IsNullOrEmpty(CurrentUserId))
         {
-            // 1. Call the service's Update method
-            await TaskService.UpdateTaskAsync(TaskToEdit);
+            // 8. Update the service call to pass the userId
+            await TaskService.UpdateTaskAsync(CurrentUserId, TaskToEdit);
             
-            // 2. Clear the edit state
+            // Clear the edit state
             TaskToEdit = null;
-            
-            // No need to fetch the list again since we updated the reference
         }
     }
 }
 
+@* Everything below this line (the HTML/Razor markup) remains the same *@
+
 <h1>SchedualMe: My To-Do List</h1>
-
-<h2>Add New Task</h2>
-<input @bind="NewTask.Title" placeholder="What needs to be done?" />
-<input @bind="NewTask.Description" placeholder="Optional description..." />
-<button @onclick="AddTask">Add Task</button>
-
-<table class="table mt-4">
-    <thead>
-        <tr>
-            <th>Complete</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-<tbody>
-    @foreach (var task in Tasks.OrderByDescending(t => !t.IsComplete))
-    {
-        // Check if the current task is the one we are editing
-        bool isEditing = task == TaskToEdit;
-
-        <tr>
-            <td>
-                <input type="checkbox" @bind="task.IsComplete" 
-                       @onchange="() => ToggleComplete(task)" 
-                       disabled="@isEditing" />
-            </td>
-            <td>
-                @if (isEditing)
-                {
-                    // EDIT MODE: Input field for Title
-                    <input @bind="task.Title" class="form-control" />
-                }
-                else
-                {
-                    // DISPLAY MODE: Static text
-                    <span style="@(task.IsComplete ? "text-decoration: line-through;" : "")">
-                        @task.Title
-                    </span>
-                }
-            </td>
-            <td>
-                @if (isEditing)
-                {
-                    // EDIT MODE: Input field for Description
-                    <input @bind="task.Description" class="form-control" />
-                }
-                else
-                {
-                    // DISPLAY MODE: Static text
-                    @task.Description
-                }
-            </td>
-            <td>
-                @if (isEditing)
-                {
-                    // EDIT MODE: Save and Cancel buttons
-                    <button class="btn btn-success btn-sm me-2" @onclick="SaveTaskEdit">Save</button>
-                    <button class="btn btn-secondary btn-sm" @onclick="CancelEdit">Cancel</button>
-                }
-                else
-                {
-                    // DISPLAY MODE: Edit and Delete buttons
-                    <button class="btn btn-info btn-sm me-2" @onclick="() => SetTaskToEdit(task)">Edit</button>
-                    <button class="btn btn-danger btn-sm" @onclick="() => DeleteTask(task)">Delete</button>
-                }
-            </td>
-        </tr>
-    }
-</tbody>
-</table>
-
-@if (Tasks.Count == 0)
-{
-    <p class="mt-4"><em>No tasks found. Get started by adding a task above!</em></p>
-}

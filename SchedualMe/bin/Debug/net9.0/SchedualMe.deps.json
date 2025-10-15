@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "SchedualMe/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Components.Authorization": "9.0.10",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "9.0.9",
           "Microsoft.AspNetCore.Identity.UI": "9.0.9",
           "Microsoft.EntityFrameworkCore.Design": "9.0.9",
@@ -62,6 +63,44 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authorization/9.0.10": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Metadata": "9.0.10",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.10",
+          "Microsoft.Extensions.Options": "9.0.10"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Authorization.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.1025.47517"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components/9.0.10": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "9.0.10",
+          "Microsoft.AspNetCore.Components.Analyzers": "9.0.10"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Components.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.1025.47517"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Analyzers/9.0.10": {},
+      "Microsoft.AspNetCore.Components.Authorization/9.0.10": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "9.0.10",
+          "Microsoft.AspNetCore.Components": "9.0.10"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.1025.47517"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/9.0.9": {
         "runtime": {
           "lib/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
@@ -102,6 +141,14 @@
           "lib/net9.0/Microsoft.AspNetCore.Identity.UI.dll": {
             "assemblyVersion": "9.0.9.0",
             "fileVersion": "9.0.925.42003"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Metadata/9.0.10": {
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Metadata.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.1025.47517"
           }
         }
       },
@@ -588,7 +635,7 @@
       },
       "Microsoft.Extensions.Caching.Abstractions/9.0.9": {
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "9.0.9"
+          "Microsoft.Extensions.Primitives": "9.0.10"
         },
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.Caching.Abstractions.dll": {
@@ -600,10 +647,10 @@
       "Microsoft.Extensions.Caching.Memory/9.0.9": {
         "dependencies": {
           "Microsoft.Extensions.Caching.Abstractions": "9.0.9",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.9",
-          "Microsoft.Extensions.Logging.Abstractions": "9.0.9",
-          "Microsoft.Extensions.Options": "9.0.9",
-          "Microsoft.Extensions.Primitives": "9.0.9"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.10",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.10",
+          "Microsoft.Extensions.Options": "9.0.10",
+          "Microsoft.Extensions.Primitives": "9.0.10"
         },
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.Caching.Memory.dll": {
@@ -614,7 +661,7 @@
       },
       "Microsoft.Extensions.Configuration.Abstractions/9.0.9": {
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "9.0.9"
+          "Microsoft.Extensions.Primitives": "9.0.10"
         },
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
@@ -625,7 +672,7 @@
       },
       "Microsoft.Extensions.DependencyInjection/9.0.9": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.9"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.10"
         },
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.DependencyInjection.dll": {
@@ -634,11 +681,11 @@
           }
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.9": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.10": {
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.925.41916"
+            "fileVersion": "9.0.1025.47515"
           }
         }
       },
@@ -652,7 +699,7 @@
       },
       "Microsoft.Extensions.FileProviders.Abstractions/9.0.9": {
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "9.0.9"
+          "Microsoft.Extensions.Primitives": "9.0.10"
         },
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {
@@ -676,7 +723,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "9.0.9",
           "Microsoft.Extensions.Logging": "9.0.9",
-          "Microsoft.Extensions.Options": "9.0.9"
+          "Microsoft.Extensions.Options": "9.0.10"
         },
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.Identity.Core.dll": {
@@ -701,8 +748,8 @@
       "Microsoft.Extensions.Logging/9.0.9": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "9.0.9",
-          "Microsoft.Extensions.Logging.Abstractions": "9.0.9",
-          "Microsoft.Extensions.Options": "9.0.9"
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.10",
+          "Microsoft.Extensions.Options": "9.0.10"
         },
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.Logging.dll": {
@@ -711,34 +758,34 @@
           }
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/9.0.9": {
+      "Microsoft.Extensions.Logging.Abstractions/9.0.10": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.9"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.10"
         },
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.Logging.Abstractions.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.925.41916"
+            "fileVersion": "9.0.1025.47515"
           }
         }
       },
-      "Microsoft.Extensions.Options/9.0.9": {
+      "Microsoft.Extensions.Options/9.0.10": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.9",
-          "Microsoft.Extensions.Primitives": "9.0.9"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.10",
+          "Microsoft.Extensions.Primitives": "9.0.10"
         },
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.Options.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.925.41916"
+            "fileVersion": "9.0.1025.47515"
           }
         }
       },
-      "Microsoft.Extensions.Primitives/9.0.9": {
+      "Microsoft.Extensions.Primitives/9.0.10": {
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.Primitives.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.925.41916"
+            "fileVersion": "9.0.1025.47515"
           }
         }
       },
@@ -1315,6 +1362,34 @@
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.Authorization/9.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-odY40/4vXt1tHeuc89zjEPfx0i0c2jurKW9r884v92i6BGasJkCKTtnIGIREBqnTn+HB4uZLipOdWG/GczQwnQ==",
+      "path": "microsoft.aspnetcore.authorization/9.0.10",
+      "hashPath": "microsoft.aspnetcore.authorization.9.0.10.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components/9.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yodHFmpceXlUrWJ53OgzWyoZWvxNFtz8pGAeDXYenZau1UD5nR2uNGMt1QeeA/3LwysnR1JehndthS587P5GrQ==",
+      "path": "microsoft.aspnetcore.components/9.0.10",
+      "hashPath": "microsoft.aspnetcore.components.9.0.10.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Analyzers/9.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VWSbgP3XaUYdt8JwUOOyx64JI6dLgClYRyiJ6+XcuC/2OW0eKSee3VJwq/1jutZqkAzyBjQ/gpDw7BXmbhrlVA==",
+      "path": "microsoft.aspnetcore.components.analyzers/9.0.10",
+      "hashPath": "microsoft.aspnetcore.components.analyzers.9.0.10.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Authorization/9.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZNbD4orKnP32KwY4+QGvqZFcTRU7dOro3OZnVYdgYBvvXljHp4BW+XsY0vWRDDSEtc7PdLWonm7poHdPVySypA==",
+      "path": "microsoft.aspnetcore.components.authorization/9.0.10",
+      "hashPath": "microsoft.aspnetcore.components.authorization.9.0.10.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/9.0.9": {
       "type": "package",
       "serviceable": true,
@@ -1342,6 +1417,13 @@
       "sha512": "sha512-XfNdgEDatFIlrui4LWmTnBGIy5RQ8b2ZTj14qklgAgKvYIch5VlaiT0l50xF3SIAIEzJBFeJ7EJqASzHFX4uzQ==",
       "path": "microsoft.aspnetcore.identity.ui/9.0.9",
       "hashPath": "microsoft.aspnetcore.identity.ui.9.0.9.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Metadata/9.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JY5XyecFnIvCMZrtUaI2IrZY/SYidTqTN7H+tXmXxdGlvRGGnf2uUKH47MJu9poJ/raK4SWK5uZQwhd21T2WFw==",
+      "path": "microsoft.aspnetcore.metadata/9.0.10",
+      "hashPath": "microsoft.aspnetcore.metadata.9.0.10.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
       "type": "package",
@@ -1525,12 +1607,12 @@
       "path": "microsoft.extensions.dependencyinjection/9.0.9",
       "hashPath": "microsoft.extensions.dependencyinjection.9.0.9.nupkg.sha512"
     },
-    "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.9": {
+    "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.10": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/hymojfWbE9AlDOa0mczR44m00Jj+T3+HZO0ZnVTI032fVycI0ZbNOVFP6kqZMcXiLSYXzR2ilcwaRi6dzeGyA==",
-      "path": "microsoft.extensions.dependencyinjection.abstractions/9.0.9",
-      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.9.0.9.nupkg.sha512"
+      "sha512": "sha512-r9waLiOPe9ZF1PvzUT+RDoHvpMmY8MW+lb4lqjYGObwKpnyPMLI3odVvlmshwuZcdoHynsGWOrCPA0hxZ63lIA==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/9.0.10",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.9.0.10.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyModel/9.0.9": {
       "type": "package",
@@ -1574,26 +1656,26 @@
       "path": "microsoft.extensions.logging/9.0.9",
       "hashPath": "microsoft.extensions.logging.9.0.9.nupkg.sha512"
     },
-    "Microsoft.Extensions.Logging.Abstractions/9.0.9": {
+    "Microsoft.Extensions.Logging.Abstractions/9.0.10": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FEgpSF+Z9StMvrsSViaybOBwR0f0ZZxDm8xV5cSOFiXN/t+ys+rwAlTd/6yG7Ld1gfppgvLcMasZry3GsI9lGA==",
-      "path": "microsoft.extensions.logging.abstractions/9.0.9",
-      "hashPath": "microsoft.extensions.logging.abstractions.9.0.9.nupkg.sha512"
+      "sha512": "sha512-MFUPv/nN1rAQ19w43smm6bbf0JDYN/1HEPHoiMYY50pvDMFpglzWAuoTavByDmZq7UuhjaxwrET3joU69ZHoHQ==",
+      "path": "microsoft.extensions.logging.abstractions/9.0.10",
+      "hashPath": "microsoft.extensions.logging.abstractions.9.0.10.nupkg.sha512"
     },
-    "Microsoft.Extensions.Options/9.0.9": {
+    "Microsoft.Extensions.Options/9.0.10": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-loxGGHE1FC2AefwPHzrjPq7X92LQm64qnU/whKfo6oWaceewPUVYQJBJs3S3E2qlWwnCpeZ+dGCPTX+5dgVAuQ==",
-      "path": "microsoft.extensions.options/9.0.9",
-      "hashPath": "microsoft.extensions.options.9.0.9.nupkg.sha512"
+      "sha512": "sha512-zMNABt8eBv0B0XrWjFy9nZNgddavaOeq3ZdaD5IlHhRH65MrU7HM+Hd8GjWE3e2VDGFPZFfSAc6XVXC17f9fOA==",
+      "path": "microsoft.extensions.options/9.0.10",
+      "hashPath": "microsoft.extensions.options.9.0.10.nupkg.sha512"
     },
-    "Microsoft.Extensions.Primitives/9.0.9": {
+    "Microsoft.Extensions.Primitives/9.0.10": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-z4pyMePOrl733ltTowbN565PxBw1oAr8IHmIXNDiDqd22nFpYltX9KhrNC/qBWAG1/Zx5MHX+cOYhWJQYCO/iw==",
-      "path": "microsoft.extensions.primitives/9.0.9",
-      "hashPath": "microsoft.extensions.primitives.9.0.9.nupkg.sha512"
+      "sha512": "sha512-3pl8D1O5ZwMpDkZAT2uXrhQ6NipkwEgDLMFuURiHTf72TvkoMP61QYH3Vk1yrzVHnHBdNZk3cQACz8Zc7YGNhQ==",
+      "path": "microsoft.extensions.primitives/9.0.10",
+      "hashPath": "microsoft.extensions.primitives.9.0.10.nupkg.sha512"
     },
     "Microsoft.Identity.Client/4.61.3": {
       "type": "package",
